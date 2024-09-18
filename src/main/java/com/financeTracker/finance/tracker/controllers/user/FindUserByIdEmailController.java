@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/user")
 @RequiredArgsConstructor
-public class FindUserByIdController {
+public class FindUserByIdEmailController {
 
     private final FindUserByEmailUseCase findUserByEmailUseCase;
 

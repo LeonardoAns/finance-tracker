@@ -1,4 +1,4 @@
-package com.financeTracker.finance.tracker.security;
+package com.financeTracker.finance.tracker.infra.security;
 
 import com.financeTracker.finance.tracker.useCases.jwt.ValidateTokenUseCase;
 import jakarta.servlet.FilterChain;
