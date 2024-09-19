@@ -16,6 +16,7 @@ public class UpdateCategoryUseCase {
     public void execute(Long id, CategoryRequestDto categoryRequestDto){
         Category category = this.categoryRepository.findById(id).orElseThrow(() -> new NotFoundException("Category Not Found"));
         category.setName(categoryRequestDto.getName());
+        this.categoryRepository.save(category);
     }
 
 }
