@@ -15,9 +15,6 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ExpenseRequestDto {
 
-    @NotNull(message = "campo nome não pode estar nulo")
-    @NotBlank(message = "campo nome não pode estar vazio")
-    private String description;
 
     @NotNull(message = "campo valor não pode estar nulo")
     private Double value;

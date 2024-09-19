@@ -22,9 +22,6 @@ public class Expense {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = true)
-    private String description;
-
     private Double value;
 
     @CreationTimestamp

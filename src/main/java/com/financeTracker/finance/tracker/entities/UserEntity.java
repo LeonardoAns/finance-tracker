@@ -31,8 +31,6 @@ public class UserEntity implements UserDetails {
     private String password;
     private String verificationCode;
     private boolean enabled;
-
-    @CreationTimestamp
     private LocalDateTime createdAt;
 
     @Enumerated(EnumType.STRING)

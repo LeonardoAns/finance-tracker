@@ -14,6 +14,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.io.UnsupportedEncodingException;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 @Service
@@ -31,6 +34,10 @@ public class CreateUserUseCase {
         }
         UserEntity user = this.modelMapper.map(userRequestDto, UserEntity.class);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+
+        ZoneId zoneId = ZoneId.of("America/Sao_Paulo");
+        ZonedDateTime zonedDateTime = ZonedDateTime.now(zoneId);
+        user.setCreatedAt(zonedDateTime.toLocalDateTime());
 
         String randomCode = GenerateVerificationCode.generateRandomCode();
         user.setVerificationCode(randomCode);

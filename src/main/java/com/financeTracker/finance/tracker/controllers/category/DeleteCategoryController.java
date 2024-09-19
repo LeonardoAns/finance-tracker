@@ -2,7 +2,6 @@ package com.financeTracker.finance.tracker.controllers.category;
 
 import com.financeTracker.finance.tracker.useCases.category.DeleteCategoryUseCase;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.http11.filters.VoidOutputFilter;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
