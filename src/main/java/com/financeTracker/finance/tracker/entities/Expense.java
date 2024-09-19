@@ -24,9 +24,6 @@ public class Expense {
 
     private Double value;
 
-    @CreationTimestamp
-    private LocalDateTime creationTimeStamp;
-
     @Enumerated(EnumType.STRING)
     private PaymentMethod paymentMethod;
 
