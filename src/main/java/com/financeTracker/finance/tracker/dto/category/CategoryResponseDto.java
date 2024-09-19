@@ -16,6 +16,7 @@ import java.util.List;
 @Builder
 public class CategoryResponseDto {
 
+    private Long id;
     private String name;
 
     @JsonManagedReference
