@@ -14,7 +14,6 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ExpenseResponseDto {
 
-    private String description;
     private Double value;
     private PaymentMethod paymentMethod;
 
