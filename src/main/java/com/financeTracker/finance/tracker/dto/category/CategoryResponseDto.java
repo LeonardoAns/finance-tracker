@@ -2,7 +2,6 @@ package com.financeTracker.finance.tracker.dto.category;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.financeTracker.finance.tracker.dto.expense.ExpenseResponseDto;
-import com.financeTracker.finance.tracker.entities.Expense;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,4 +21,5 @@ public class CategoryResponseDto {
     @JsonManagedReference
     private List<ExpenseResponseDto> expenses;
     private Double percentage;
+    private Double value;
 }

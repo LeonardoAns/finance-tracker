@@ -32,6 +32,7 @@ public class CalculateCategoryValueUseCase {
             for (Category category : categories) {
                 CategoryResponseDto categoryResponseDto = this.modelMapper.map(category, CategoryResponseDto.class);
                 categoryResponseDto.setPercentage(0.0);
+                categoryResponseDto.setValue(0.0);
                 categoryResponseDtos.add(categoryResponseDto);
             }
             return new CategorySummaryResponseDto(categoryResponseDtos, totalValue);
@@ -41,10 +42,12 @@ public class CalculateCategoryValueUseCase {
             Double categoryTotal = category.getExpenses().stream()
                     .mapToDouble(Expense::getValue)
                     .sum();
+
             Double percentage = (categoryTotal / totalValue) * 100;
 
             CategoryResponseDto categoryResponseDto = this.modelMapper.map(category, CategoryResponseDto.class);
             categoryResponseDto.setPercentage(percentage);
+            categoryResponseDto.setValue(categoryTotal);
             categoryResponseDtos.add(categoryResponseDto);
         }
 
