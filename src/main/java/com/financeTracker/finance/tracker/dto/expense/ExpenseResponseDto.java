@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ExpenseResponseDto {
 
+    private Long id;
     private Double value;
     private PaymentMethod paymentMethod;
 
