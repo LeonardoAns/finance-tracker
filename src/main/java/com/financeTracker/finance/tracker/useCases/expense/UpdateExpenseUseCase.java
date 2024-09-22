@@ -18,6 +18,6 @@ public class UpdateExpenseUseCase {
         expense.setDescription(expenseRequestDto.getDescription());
         expense.setValue(expenseRequestDto.getValue());
         expense.setPaymentMethod(expenseRequestDto.getPaymentMethod());
-        expense.setCategory(expenseRequestDto.getCategory());
+        expense.setCategory(expense.getCategory());
     }
 }
