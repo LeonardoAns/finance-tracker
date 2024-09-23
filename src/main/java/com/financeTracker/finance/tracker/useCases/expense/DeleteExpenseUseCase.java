@@ -13,8 +13,6 @@ public class DeleteExpenseUseCase {
     private final ExpenseRepository expenseRepository;
 
     public void execute(Long id){
-        Expense expense = this.expenseRepository.findById(id).orElseThrow(() -> new NotFoundException("expense not found"));
-        System.out.println("despesa do id "+expense.getId()+" excluida ");
-        this.expenseRepository.delete(expense);
+        this.expenseRepository.deleteById(id);
     }
 }
