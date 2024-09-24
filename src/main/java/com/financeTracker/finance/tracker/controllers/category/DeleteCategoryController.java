@@ -15,9 +15,11 @@ public class DeleteCategoryController {
 
     private final DeleteCategoryUseCase deleteCategoryUseCase;
 
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id){
-        this.deleteCategoryUseCase.execute(id);
+    @DeleteMapping("/delete/{userId}/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long userId,
+                                       @PathVariable Long id) {
+        this.deleteCategoryUseCase.execute(userId, id);
         return ResponseEntity.noContent().build();
     }
 }
+

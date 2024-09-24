@@ -20,20 +20,21 @@ public class GenerateTokenUseCase {
     @Value("${api.security.token.secret}")
     private String key;
 
-    public String generateToken(UserEntity user){
+    public String generateToken(UserEntity user) {
         try {
             Algorithm algorithm = Algorithm.HMAC256(key);
             return JWT.create()
                     .withIssuer("finance-tracker")
                     .withSubject(user.getEmail())
+                    .withClaim("userId", user.getId())
                     .withExpiresAt(generateExpirationDate())
                     .sign(algorithm);
         } catch (IllegalArgumentException e) {
-            throw new InvalidRequestException("Error while create token");
+            throw new InvalidRequestException("Error while creating token");
         }
     }
 
-    private Instant generateExpirationDate(){
+    private Instant generateExpirationDate() {
         return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-03:00"));
     }
 }

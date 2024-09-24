@@ -5,10 +5,8 @@ import com.financeTracker.finance.tracker.useCases.expense.RegisterExpenseUseCas
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 
 @RestController
 @RequestMapping("/expense")
@@ -17,9 +15,9 @@ public class RegisterExpenseController {
 
     private final RegisterExpenseUseCase registerExpenseUseCase;
 
-    @PostMapping("/register")
-    public ResponseEntity<Void> registerExpense(@RequestBody @Valid ExpenseRequestDto expenseRequestDto){
-        this.registerExpenseUseCase.execute(expenseRequestDto);
+    @PostMapping("/register/{userId}")
+    public ResponseEntity<Void> registerExpense(@RequestBody @Valid ExpenseRequestDto expenseRequestDto, @PathVariable Long userId) {
+        this.registerExpenseUseCase.execute(expenseRequestDto, userId);
         return ResponseEntity.ok().build();
     }
 }

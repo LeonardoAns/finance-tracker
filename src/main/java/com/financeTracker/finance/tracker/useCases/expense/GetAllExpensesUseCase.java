@@ -16,12 +16,11 @@ public class GetAllExpensesUseCase {
     private final ExpenseRepository expenseRepository;
     private final ModelMapper modelMapper;
 
-    public List<ExpenseResponseDto> execute(){
-        List<Expense> expenses = this.expenseRepository.findAll();
-        return expenses
-                .stream()
-                .map(expense ->
-                        this.modelMapper.map(expense, ExpenseResponseDto.class))
+    public List<ExpenseResponseDto> execute(Long userId) {
+        List<Expense> expenses = this.expenseRepository.findByUserId(userId);
+        return expenses.stream()
+                .map(expense -> this.modelMapper.map(expense, ExpenseResponseDto.class))
                 .toList();
     }
 }
+

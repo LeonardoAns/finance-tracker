@@ -6,6 +6,7 @@ import com.financeTracker.finance.tracker.useCases.category.CalculateCategoryVal
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,9 +19,9 @@ public class CalculateCategoryValueController {
 
     private final CalculateCategoryValueUseCase calculateCategoryValueUseCase;
 
-    @GetMapping("/get")
-    public ResponseEntity<CategorySummaryResponseDto> calculateValue(){
-        CategorySummaryResponseDto response = this.calculateCategoryValueUseCase.execute();
+    @GetMapping("/get/{userId}")
+    public ResponseEntity<CategorySummaryResponseDto> calculateValue(@PathVariable Long userId) {
+        CategorySummaryResponseDto response = this.calculateCategoryValueUseCase.execute(userId);
         return ResponseEntity.ok(response);
     }
 }

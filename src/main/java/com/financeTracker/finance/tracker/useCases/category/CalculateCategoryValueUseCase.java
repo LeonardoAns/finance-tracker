@@ -4,7 +4,10 @@ import com.financeTracker.finance.tracker.dto.category.CategoryResponseDto;
 import com.financeTracker.finance.tracker.dto.category.CategorySummaryResponseDto;
 import com.financeTracker.finance.tracker.entities.Category;
 import com.financeTracker.finance.tracker.entities.Expense;
+import com.financeTracker.finance.tracker.entities.UserEntity;
+import com.financeTracker.finance.tracker.exceptions.NotFoundException;
 import com.financeTracker.finance.tracker.repositories.CategoryRepository;
+import com.financeTracker.finance.tracker.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -18,10 +21,14 @@ public class CalculateCategoryValueUseCase {
 
     private final CategoryRepository categoryRepository;
     private final ModelMapper modelMapper;
+    private final UserRepository userRepository;
 
-    public CategorySummaryResponseDto execute() {
+    public CategorySummaryResponseDto execute(Long userId) {
+        UserEntity user = userRepository.findById(userId)
+                .orElseThrow(() -> new NotFoundException("User not found"));
+
         List<CategoryResponseDto> categoryResponseDtos = new ArrayList<>();
-        List<Category> categories = this.categoryRepository.findAll();
+        List<Category> categories = this.categoryRepository.findByUser(user);
 
         Double totalValue = categories.stream()
                 .flatMap(category -> category.getExpenses().stream())

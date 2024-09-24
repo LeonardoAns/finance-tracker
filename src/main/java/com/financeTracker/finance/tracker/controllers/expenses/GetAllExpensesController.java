@@ -5,10 +5,7 @@ import com.financeTracker.finance.tracker.useCases.expense.GetAllExpensesUseCase
 import jakarta.validation.GroupSequence;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,9 +16,10 @@ public class GetAllExpensesController {
 
     private final GetAllExpensesUseCase getAllExpensesUseCase;
 
-    @GetMapping("/get")
-    public ResponseEntity<List<ExpenseResponseDto>> getExpenses(){
-        List<ExpenseResponseDto> response = this.getAllExpensesUseCase.execute();
+    @GetMapping("/user/{userId}/get")
+    public ResponseEntity<List<ExpenseResponseDto>> getExpenses(@PathVariable Long userId) {
+        List<ExpenseResponseDto> response = this.getAllExpensesUseCase.execute(userId);
         return ResponseEntity.ok(response);
     }
 }
+

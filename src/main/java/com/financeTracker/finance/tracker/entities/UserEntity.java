@@ -36,6 +36,13 @@ public class UserEntity implements UserDetails {
     @Enumerated(EnumType.STRING)
     private List<Roles> roles;
 
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private List<Category> categories;
+
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private List<Expense> expenses;
+
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
