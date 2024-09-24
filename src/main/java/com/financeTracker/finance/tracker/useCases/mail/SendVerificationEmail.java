@@ -17,7 +17,7 @@ public class SendVerificationEmail {
     @Autowired
     private JavaMailSender emailSender;
 
-    private String verifyURL = "http://localhost:8081/user/verify?code=";
+    private String verifyURL = "https://finance-tracker-sgyh.onrender.com/user/verify?code=";
 
     public void execute(UserEntity user) throws MessagingException, UnsupportedEncodingException {
         String toAddres = user.getEmail();
