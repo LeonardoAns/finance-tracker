@@ -17,8 +17,8 @@ public class GetAllExpensesController {
     private final GetAllExpensesUseCase getAllExpensesUseCase;
 
     @GetMapping("/user/{userId}/get")
-    public ResponseEntity<List<ExpenseResponseDto>> getExpenses(@PathVariable Long userId) {
-        List<ExpenseResponseDto> response = this.getAllExpensesUseCase.execute(userId);
+    public ResponseEntity<List<ExpenseResponseDto>> getExpenses() {
+        List<ExpenseResponseDto> response = this.getAllExpensesUseCase.execute();
         return ResponseEntity.ok(response);
     }
 }

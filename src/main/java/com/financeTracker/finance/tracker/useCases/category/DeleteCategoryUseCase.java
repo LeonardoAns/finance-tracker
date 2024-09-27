@@ -5,6 +5,7 @@ import com.financeTracker.finance.tracker.entities.UserEntity;
 import com.financeTracker.finance.tracker.exceptions.NotFoundException;
 import com.financeTracker.finance.tracker.repositories.CategoryRepository;
 import com.financeTracker.finance.tracker.repositories.UserRepository;
+import com.financeTracker.finance.tracker.useCases.auth.AuthenticatedUserUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +15,11 @@ public class DeleteCategoryUseCase {
 
     private final CategoryRepository categoryRepository;
     private final UserRepository userRepository;
+    private final AuthenticatedUserUseCase authenticatedUserUseCase;
 
-    public void execute(Long userId, Long categoryId) {
+    public void execute(Long categoryId) {
+        Long userId = authenticatedUserUseCase.getAuthenticatedUserId();
+
         UserEntity user = userRepository.findById(userId)
                 .orElseThrow(() -> new NotFoundException("User not found"));
 

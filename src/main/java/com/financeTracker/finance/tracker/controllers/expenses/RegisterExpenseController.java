@@ -15,9 +15,9 @@ public class RegisterExpenseController {
 
     private final RegisterExpenseUseCase registerExpenseUseCase;
 
-    @PostMapping("/register/{userId}")
-    public ResponseEntity<Void> registerExpense(@RequestBody @Valid ExpenseRequestDto expenseRequestDto, @PathVariable Long userId) {
-        this.registerExpenseUseCase.execute(expenseRequestDto, userId);
+    @PostMapping("/register")
+    public ResponseEntity<Void> registerExpense(@RequestBody @Valid ExpenseRequestDto expenseRequestDto) {
+        this.registerExpenseUseCase.execute(expenseRequestDto);
         return ResponseEntity.ok().build();
     }
 }

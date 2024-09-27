@@ -13,11 +13,9 @@ public class UpdateCategoryController {
 
     private final UpdateCategoryUseCase updateCategoryUseCase;
 
-    @PutMapping("/update/{userId}/{id}")
-    public ResponseEntity<Void> update(@PathVariable Long userId,
-                                       @PathVariable Long id,
-                                       @RequestBody CategoryRequestDto categoryRequestDto) {
-        this.updateCategoryUseCase.execute(userId, id, categoryRequestDto);
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Void> update(@PathVariable Long id, @RequestBody CategoryRequestDto categoryRequestDto) {
+        this.updateCategoryUseCase.execute(id, categoryRequestDto);
         return ResponseEntity.ok().build();
     }
 }

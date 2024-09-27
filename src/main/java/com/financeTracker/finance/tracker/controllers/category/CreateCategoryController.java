@@ -15,10 +15,9 @@ public class CreateCategoryController {
 
     private final CreateCategoryUseCase createCategoryUseCase;
 
-    @PostMapping("/create/{userId}")
-    public ResponseEntity<Void> createCategory(@PathVariable Long userId,
-                                               @RequestBody @Valid CategoryRequestDto categoryRequestDto) {
-        this.createCategoryUseCase.execute(userId, categoryRequestDto);
+    @PostMapping("/create")
+    public ResponseEntity<Void> createCategory(@RequestBody @Valid CategoryRequestDto categoryRequestDto) {
+        this.createCategoryUseCase.execute(categoryRequestDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }

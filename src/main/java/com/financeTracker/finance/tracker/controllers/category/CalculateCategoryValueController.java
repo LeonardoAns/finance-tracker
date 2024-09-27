@@ -19,9 +19,9 @@ public class CalculateCategoryValueController {
 
     private final CalculateCategoryValueUseCase calculateCategoryValueUseCase;
 
-    @GetMapping("/get/{userId}")
-    public ResponseEntity<CategorySummaryResponseDto> calculateValue(@PathVariable Long userId) {
-        CategorySummaryResponseDto response = this.calculateCategoryValueUseCase.execute(userId);
+    @GetMapping("/get")
+    public ResponseEntity<CategorySummaryResponseDto> calculateValue() {
+        CategorySummaryResponseDto response = this.calculateCategoryValueUseCase.execute();
         return ResponseEntity.ok(response);
     }
 }

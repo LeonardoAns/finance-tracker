@@ -8,6 +8,7 @@ import com.financeTracker.finance.tracker.entities.UserEntity;
 import com.financeTracker.finance.tracker.exceptions.NotFoundException;
 import com.financeTracker.finance.tracker.repositories.CategoryRepository;
 import com.financeTracker.finance.tracker.repositories.UserRepository;
+import com.financeTracker.finance.tracker.useCases.auth.AuthenticatedUserUseCase;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -22,8 +23,11 @@ public class CalculateCategoryValueUseCase {
     private final CategoryRepository categoryRepository;
     private final ModelMapper modelMapper;
     private final UserRepository userRepository;
+    private final AuthenticatedUserUseCase authenticatedUserUseCase;
 
-    public CategorySummaryResponseDto execute(Long userId) {
+    public CategorySummaryResponseDto execute() {
+        Long userId = this.authenticatedUserUseCase.getAuthenticatedUserId();
+
         UserEntity user = userRepository.findById(userId)
                 .orElseThrow(() -> new NotFoundException("User not found"));
 
